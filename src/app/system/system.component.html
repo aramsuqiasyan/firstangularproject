@@ -1,0 +1,66 @@
+<div class="main-wrapper">
+    <div class="app">
+        <!--HEADER-->
+        <header class="header">
+            <div class="header-block header-block-search">
+                {{date | date:'dd/MM/yyyy'}}
+            </div>
+            <div class="header-block header-block-nav">
+                <ul class="nav-profile">
+                    <li class="profile dropdown" appDropdown>
+                        <a class="nav-link dropdown-toggle" role="button">
+                                <span class="name">
+                                    Hi, {{userName}}
+                                </span>
+                        </a>
+                        <div class="dropdown-menu profile-dropdown-menu" >
+                            <a class="dropdown-item" [routerLink]="['/system','records']"> <i class="fa fa-gear icon"></i>Сделать запись</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" (click)="onLogout()"><i class="fa fa-power-off icon"></i>Выйти</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <!--HEADER-->
+        <!--SIDEBAR-->
+        <aside class="sidebar">
+            <div class="sidebar-container">
+                <div class="sidebar-header">
+                    <div class="brand">
+                        <div class="logo">
+                            <span class="l l1"></span>
+                            <span class="l l2"></span>
+                            <span class="l l3"></span>
+                            <span class="l l4"></span>
+                            <span class="l l5"></span>
+                        </div>
+                        Money
+                    </div>
+                </div>
+                <nav class="menu">
+                    <ul class="nav metismenu">
+                        <li routerLinkActive="active">
+                            <a [routerLink]="['/system','bill']"> <i class="fa fa-building-o"></i> Score </a>
+                        </li>
+                        <li  routerLinkActive="active">
+                            <a [routerLink]="['/system','history']"> <i class="fa fa-flash"></i> Story </a>
+                        </li>
+                        <li  routerLinkActive="active">
+                            <a [routerLink]="['/system','planing']"> <i class="fa fa-archive"></i> Planing </a>
+                        </li>
+                        <li  routerLinkActive="active">
+                            <a [routerLink]="['/system','records']"> <i class="fa fa-plus-square"></i> Record </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!--SIDEBAR-->
+        <!--CONTENT-->
+        <article class="content dashboard-page">
+            <router-outlet></router-outlet>
+        </article>
+        <!--CONTENT-->
+    </div>
+</div>

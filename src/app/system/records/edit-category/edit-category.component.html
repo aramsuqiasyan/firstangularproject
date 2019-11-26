@@ -1,0 +1,64 @@
+<div class="card">
+    <div class="card-header bordered">
+        <div class="header-block">
+            <h3 class="title">Edit Category</h3>
+        </div>
+    </div>
+    <div class="card-block">
+        <div *ngIf="message.text" class="alert alert-{{message.type}}">{{message.text}}</div>
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <div class="form-group">
+                <label for="e-select-category">Выбеоите категорию</label>
+                <select class="form-control" id="e-select-category" [(ngModel)]="currentCategoryId" [ngModelOptions]="{standalone: true}" (change)="onCategoryChange()">
+                    <option *ngFor="let c of categories" [value]="c.id">
+                        {{c.name}}
+                    </option>
+                </select>
+            </div>
+            <div
+                class="form-group"
+                [ngClass]="{'has-error':name.invalid && name.touched,'has-success':!name.invalid && name.touched}"
+            >
+                <label class="control-label" for="e-category-name">Enter the title</label>
+                <input
+                    type="text"
+                    id="e-category-name"
+                    class="form-control"
+                    required
+                    [ngModel]="currentCategory.name"
+                    name="name"
+                    #name="ngModel"
+                >
+                <span
+                    *ngIf="name.invalid && name.touched"
+                    class="form-help-text"
+                >
+                    Называние категории не может быть пустым
+                </span>
+            </div>
+            <div
+                class="form-group "
+                [ngClass]="{'has-error':number.invalid && number.touched,'has-success':!number.invalid && number.touched}"
+            >
+                <label class="control-label" for="e-category-value">Enter Limit</label>
+                <input
+                    type="number"
+                    value="0"
+                    id="e-category-value"
+                    class="form-control"
+                    required
+                    [ngModel]='currentCategory.number'
+                    name="number"
+                    #number="ngModel"
+                    min="1"
+                >
+                <span
+                    *ngIf="number.invalid && number.touched"
+                    class="form-help-text">
+                        Номер категории не может быть пустым
+                </span>
+            </div>
+            <button  [disabled]="f.invalid" type="submit" class="btn btn-primary">To Update</button>
+        </form>
+    </div>
+</div>

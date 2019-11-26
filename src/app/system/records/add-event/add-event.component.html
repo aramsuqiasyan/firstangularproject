@@ -1,0 +1,94 @@
+<div class="card">
+    <div class="card-header bordered">
+        <div class="header-block">
+            <h3 class="title">Add Event</h3>
+        </div>
+    </div>
+    <div class="card-block">
+        <div class="alert alert-{{message.type}}" *ngIf="message.text">{{message.text}}</div>
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <div class="form-group">
+                <label class="control-label" for="category">Select a category</label>
+                <select
+                    class="form-control"
+                    id="category"
+                    name="category"
+                    [ngModel]="1"
+                    required
+                >
+                    <option
+                        *ngFor="let c of categories"
+                        [value]="c.id"
+                    >
+                        {{c.name}}
+                    </option>
+                </select>
+            </div>
+            <div
+                class="form-group"
+            >
+                <label class="control-label">Select Type</label>
+                <div *ngFor="let t of types;let i = index">
+                    <label>
+                        <input
+                            class="radio"
+                            name="type"
+                            type="radio"
+                            [value]="t.type"
+                            [ngModel]="'outcome'"
+                            required
+                        >
+                        <span>{{t.label}}</span>
+                    </label>
+                </div>
+            </div>
+            <div
+                class="form-group"
+                [ngClass]="{'has-error':amount.invalid && amount.touched,'has-success':!amount.invalid && amount.touched}"
+            >
+                <label class="control-label" for="amount">Enter amount</label>
+                <input
+                    type="number"
+                    id="amount"
+                    class="form-control"
+                    name="amount"
+                    [ngModel]="1"
+                    min="1"
+                    #amount='ngModel'
+                    required
+                >
+                <span
+                    class="form-help-text"
+                    *ngIf="amount.invalid && amount.touched"
+                >
+                    Обеязатялное поле
+                </span>
+            </div>
+
+
+            <div
+                class="form-group"
+                [ngClass]="{'has-error':description.invalid && description.touched,'has-success':!description.invalid && description.touched}"
+            >
+                <label class="control-label" for="description">Enter description</label>
+                <textarea
+                    id="description"
+                    class="form-control"
+                    name="description"
+                    ngModel
+                    #description='ngModel'
+                    required
+                ></textarea>
+                <span
+                    class="form-help-text"
+                    *ngIf="description.invalid && description.touched"
+                >
+                    Обеязатялное поле
+                </span>
+            </div>
+
+
+            <button [disabled]="f.invalid"  type="submit" class="btn btn-primary">To Add</button>
+        </form>
+    </div>
+</div>

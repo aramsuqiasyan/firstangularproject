@@ -1,0 +1,29 @@
+<div class="row row-sm stats-container">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Currency</th>
+            <th>Course</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>EUR</td>
+            <td>1</td>
+            <td>{{currency['date']}}</td>
+        </tr>
+        <tr>
+            <td>USD</td>
+            <td>{{currency['rates']['USD']}}</td>
+            <td>{{currency['date']}}</td>
+        </tr>
+        <tr>
+            <td>RUB</td>
+            <td>{{currency['rates']['RUB']}}</td>
+            <td>{{currency['date']}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>

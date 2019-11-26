@@ -1,0 +1,52 @@
+<div *ngIf="!isLoaded" style="text-align: center">Loading...</div>
+<!--CONTENT-->
+<article class="content" *ngIf="isLoaded">
+    <div class="title-block">
+        <h3 class="title">
+            <a [routerLink]="['/system','history']"><i class="fa fa-arrow-left"></i></a>
+            Record Page № {{evt.id}}
+            <span class="sparkline bar"></span>
+        </h3>
+    </div>
+    <section class="section" *ngIf="evt.type === 'income'">
+        <div class="row">
+            <div class="col-xs-6 col-xs-offset-3">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <div class="header-block">
+                            <p class="title">Income</p>
+                        </div>
+                    </div>
+                    <div class="card-block">
+                        <ul>
+                            <li>Amount: <strong>{{evt.amount | number:'1.2'}}</strong></li>
+                            <li>Description: <strong>{{evt.description}}</strong></li></ul>
+                    </div>
+                    <div class="card-footer">{{evt.date | date:'mm/dd/yyyy'}}</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" *ngIf="evt.type === 'outcome'">
+        <div class="row">
+            <div class="col-xs-6 col-xs-offset-3">
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <div class="header-block">
+                            <p class="title">Consumption</p>
+                        </div>
+                    </div>
+                    <div class="card-block">
+                        <ul>
+                            <li>Amount: <strong>{{evt.amount | number:'1.2'}}</strong></li>
+                            <li>Description: <strong>{{evt.description}}</strong></li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">{{evt.date | date:'mm/dd/yyyy'}}</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+<!--CONTENT-->

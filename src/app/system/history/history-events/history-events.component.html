@@ -1,0 +1,64 @@
+<section class="section">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bordered">
+                    <div class="header-block">
+                        <h3 class="title">Event List</h3>
+                    </div>
+                    <div class="form-inline pull-right m-r-2">
+                        <div class="form-group">
+                            <input
+                                type="email"
+                                class="form-control"
+                                [placeholder]="filterTitle"
+                                [(ngModel)]="searchValue"
+                                #searchInput
+                            >
+                        </div>
+                        <div class="btn-group" appDropdown>
+                            <button type="button" class="btn btn-secondary dropdown-toggle ">
+                                {{filterTitle}}
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" (click)="changeCritery('amount')">Amount</a>
+                                <a class="dropdown-item" (click)="changeCritery('date')">Date</a>
+                                <a class="dropdown-item" (click)="changeCritery('category')">Category</a>
+                                <a class="dropdown-item" (click)="changeCritery('type')">Type</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-block">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th>Type Of</th>
+                            <th class="text-lg-center">Act</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let evt of (events | searchPipe:searchInput.value:critery);let i = index">
+                                <th scope="row">{{i + 1}}</th>
+                                <td>{{evt.amount | number:'1.2'}}</td>
+                                <td>{{evt.date | date:'dd/MM/yyyy'}}</td>
+                                <td>{{evt.catName}}</td>
+                                <td>
+                                    <span *ngIf="evt.type == 'outcome'" class="label label-danger">Outcome</span>
+                                    <span *ngIf="evt.type == 'income'" class="label label-success">Income</span>
+                                </td>
+                                <td class="text-lg-center">
+                                    <a [routerLink]="['/system','history',evt.id]" class="btn btn-primary-outline">Open</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

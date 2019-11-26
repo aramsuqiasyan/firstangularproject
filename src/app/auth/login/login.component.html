@@ -1,0 +1,56 @@
+<p class="text-xs-center">Sign in to work</p>
+<div *ngIf="message.text" class="alert alert-{{message.type}}">{{message.text}}</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div
+        class="form-group"
+        [ngClass]="{'has-error': form.get('email').touched && form.get('email').invalid}"
+    >
+        <label for="email">Email</label>
+        <input
+            type="text"
+            class="form-control underlined"
+            id="email"
+            placeholder="Write your email"
+            formControlName="email"
+        >
+        <span
+            class="form-help-text"
+            *ngIf="form.get('email').touched && form.get('email').invalid"
+        >
+        <span *ngIf="form.get('email').errors.required">Email не может быть пустым</span>
+        <span *ngIf="form.get('email').errors.email">Введите коректный Email</span>
+      </span>
+    </div>
+    <div
+        class="form-group"
+        [ngClass]="{'has-error': form.get('password').touched && form.get('password').invalid}"
+    >
+        <label for="password">Password</label>
+        <input
+            type="password"
+            class="form-control underlined"
+            id="password"
+            placeholder="Password"
+            formControlName="password"
+        >
+        <span
+            class="form-help-text"
+            *ngIf="form.get('password').touched && form.get('password').invalid"
+        >
+        <span *ngIf="form.get('password').errors.required">Пароль не может быть пустым</span>
+        <span *ngIf="form.get('password').errors.minlength && form.get('password').errors.minlength.requiredLength">
+            Минимум {{form.get('password').errors.minlength.requiredLength}} символов ,сейчас {{form.get('password').errors.minlength.actualLength}}
+        </span>
+      </span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-block btn-primary"
+                [disabled]="form.invalid"
+        >Sign in!</button>
+    </div>
+    <div class="form-group">
+        <p class="text-muted text-xs-center">
+            No account? <a routerLink="/registration">Sign up!</a>
+        </p>
+    </div>
+</form>

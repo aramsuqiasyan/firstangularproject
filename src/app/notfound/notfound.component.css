@@ -1,0 +1,11 @@
+.flex{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #d1d3d6;
+    background-color: #ffffff;
+    text-shadow: 0 3px 5px #999b9d;
+    flex-direction: column;
+}

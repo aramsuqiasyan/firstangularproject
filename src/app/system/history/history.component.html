@@ -1,0 +1,11 @@
+<div class="title-block">
+    <h3 class="title">
+        Story Page <span class="sparkline bar"></span>
+    </h3>
+</div>
+<div *ngIf="!isLoaded" style="text-align: center">Loading...</div>
+<app-history-chart *ngIf="isLoaded" [data]="chartData"></app-history-chart>
+<app-history-events *ngIf="isLoaded"
+                    [categories]="categories"
+                    [events]="events"
+></app-history-events>
